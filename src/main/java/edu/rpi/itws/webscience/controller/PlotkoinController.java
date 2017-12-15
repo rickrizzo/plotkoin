@@ -20,16 +20,21 @@ public class PlotkoinController {
 	ObjectMapper mapper = new ObjectMapper();
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
-	public String save() throws JsonProcessingException {
+	public String savePlotkoin() throws JsonProcessingException {
 		return mapper.writeValueAsString(repository.findAll());
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
-	public String mine(@RequestBody int receiver) throws JsonProcessingException {
+	public String minePlotkoin(@RequestBody int receiver) throws JsonProcessingException {
 		if (repository.findAllByReceiver(receiver).size() == 0) {
 			repository.save(new Plotkoin(0, receiver, 10, "init", Integer.toString(receiver)));
 		}
 		return mapper.writeValueAsString(repository.findAllByReceiver(receiver));
+	}
+	
+	@RequestMapping(value = "/send", method = RequestMethod.POST)
+	public String sendPlotkoin(@RequestBody String payload) {
+		return payload;
 	}
 	
 	@RequestMapping(value = "/clear", method = RequestMethod.GET)
