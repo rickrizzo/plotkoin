@@ -6,14 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 
 import edu.rpi.itws.webscience.utilities.StringShuffle;
 
-//@Table(name="transaction")
 @Entity
 public class Plotkoin {
 	
