@@ -13,8 +13,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 
 import edu.rpi.itws.webscience.utilities.StringShuffle;
 
+//@Table(name="transaction")
 @Entity
-@Table(name="transaction")
 public class Plotkoin {
 	
 	@Id

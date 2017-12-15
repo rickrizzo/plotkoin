@@ -19,6 +19,11 @@ public class PlotkoinController {
 	PlotkoinRepository repository;
 	ObjectMapper mapper = new ObjectMapper();
 	
+	@RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/json")
+	public String test() {
+		return "{ \"test\": 123 }";
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
 	public String savePlotkoin() throws JsonProcessingException {
 		return mapper.writeValueAsString(repository.findAll());
