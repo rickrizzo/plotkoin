@@ -37,6 +37,14 @@ public class PlotkoinController {
 		return mapper.writeValueAsString(repository.findAllByReceiver(receiver));
 	}
 	
+	@RequestMapping(value = "/validate", method = RequestMethod.POST)
+	public String validatePlotkoin(@RequestBody String guess) throws JsonProcessingException {
+		if(repository.findOneBySenderAndReceiver(0, 661224649).get(0).validate(guess)) {
+			return "You have successfully validated this transaction";
+		}
+		return "Invalid";
+	}
+	
 	@RequestMapping(value = "/send", method = RequestMethod.POST)
 	public String sendPlotkoin(@RequestBody String payload) {
 		return payload;

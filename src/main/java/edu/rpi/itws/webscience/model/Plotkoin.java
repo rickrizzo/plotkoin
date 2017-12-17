@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import edu.rpi.itws.webscience.utilities.StringShuffle;
 
@@ -22,6 +23,8 @@ public class Plotkoin {
 	private int amount;
 	private String message;
 	private String data;
+	@JsonIgnore
+	private String secret;
 	
 	protected Plotkoin() {
 	}
@@ -31,10 +34,11 @@ public class Plotkoin {
 		this.receiver = receiver;
 		this.amount = amount;
 		this.message = message;
+		this.secret = StringShuffle.shuffle(secret);
 		
 		Algorithm algorithm = null;
 		try {
-			algorithm = Algorithm.HMAC256(StringShuffle.shuffle(secret));
+			algorithm = Algorithm.HMAC256(this.secret);
 		} catch (IllegalArgumentException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -63,6 +67,17 @@ public class Plotkoin {
 	
 	public String getJwt() {
 		return data;
+	}
+	
+	public String getSecret() {
+		return secret;
+	}
+	
+	public boolean validate(String guess) {
+		if(guess.equals(secret)) {
+			return true;
+		}
+		return false;
 	}
 	
 	@Override

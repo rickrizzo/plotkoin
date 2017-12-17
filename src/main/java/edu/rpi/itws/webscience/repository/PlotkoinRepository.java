@@ -9,4 +9,5 @@ import edu.rpi.itws.webscience.model.Plotkoin;
 public interface PlotkoinRepository extends CrudRepository<Plotkoin, Long>{
 	List<Plotkoin> findAllBySender(int sender);
 	List<Plotkoin> findAllByReceiver(int receiver);
+	List<Plotkoin> findOneBySenderAndReceiver(int sender, int receiver);
 }
