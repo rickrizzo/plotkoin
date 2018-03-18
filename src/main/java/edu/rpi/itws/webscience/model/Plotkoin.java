@@ -89,7 +89,7 @@ public class Plotkoin {
 	@Override
 	public String toString() {
 		return String.format(
-				"Plotkoin Transaction [to=%d, from=%d, amount=%d, message=%s, data=%s]", 
+				"Plotkoin Transaction [receiver=%d, sender=%d, amount=%d, message=%s, data=%s]", 
 				receiver, sender, amount, message, data);
 	}
 
